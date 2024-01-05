@@ -1,43 +1,28 @@
 class Solution {
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-         int n = nums1.length, m = nums2.length;
-        int len = n + m;
-
-        int mid = (len % 2 == 0) ? (len - 1) / 2 : len / 2;
-        // System.out.println(mid + "<----");
-
-        int i = 0, j = 0;
-        Integer val1 = null, val2 = null;
-        while (i < n && j < m) {
-            if (nums1[i] <= nums2[j]) {
-                if (val1 == null && i + j == mid) val1 = nums1[i];
-                if (val2 == null && i + j == mid + 1) val2 = nums1[i];
-                // System.out.print("index " + (i + j) + "->" + nums1[i] + " ");
-                i++;
-            } else {
-                if (val1 == null && i + j == mid) val1 = nums2[j];
-                if (val2 == null && i + j == mid + 1) val2 = nums2[j];
-                // System.out.print("index " + (i + j) + "->" + nums2[j] + " ");
-
-                j++;
-            }
+    public String intToRoman(int number) {
+       int num[] = {1,4,5,9,10,40,50,90,100,400,500,900,1000};
+    String sym[] = {"I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M"};
+    int i=12;
+    String s="";
+    while(number>0){
+        if(number-num[i]>=0){
+            s+=sym[i];
+            number-=num[i];
+        }else{
+            i--;
         }
-        for (; i < n; i++) {
-            // System.out.print("index " + (i + j) + "->" + nums1[i] + " ");
-
-            if (val1 == null && i + j == mid) val1 = nums1[i];
-            if (val2 == null && i + j == mid + 1) val2 = nums1[i];
-        }
-        // System.out.println(j);
-        for (; j < m; j++) {
-            // System.out.print("index " + (i + j) + "->" + nums2[j] + " ");
-
-            if (val1 == null && i + j == mid) val1 = nums2[j];
-            if (val2 == null && i + j == mid + 1) val2 = nums2[j];
-        }
-        // System.out.println(val1 + " " + val2);
-
-        if (len % 2 == 0) return ((val1 + val2) * 1.0) / 2;
-        return (double)val1;
+    }
+        // while(number>0)
+    // {
+    //   int div = number/num[i];
+    //   number = number%num[i];
+    //   while(div>0)
+    //   {
+    //     s+=sym[i];
+    //     div--;
+    //   }
+    //   i--;
+    // }
+    return s;  
     }
 }
